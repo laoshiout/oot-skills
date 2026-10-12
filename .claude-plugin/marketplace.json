@@ -1,0 +1,12 @@
+{
+  "name": "oot-skills",
+  "owner": { "name": "laoshiout" },
+  "plugins": [
+    {
+      "name": "oot-skills",
+      "description": "Personal collection of agent skills",
+      "source": "./",
+      "skills": ["./skills/hello-skill"]
+    }
+  ]
+}
