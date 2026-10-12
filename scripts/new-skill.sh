@@ -8,4 +8,4 @@ dest="$root/skills/$name"
 [ -e "$dest" ] && { echo "$dest exists"; exit 1; }
 mkdir -p "$dest"
 sed "s/your-skill-name .*/$name/" "$root/template/SKILL.md" > "$dest/SKILL.md"
-echo "Created $dest/SKILL.md — remember to add it to .claude-plugin/marketplace.json"
+echo "Created $dest/SKILL.md"
