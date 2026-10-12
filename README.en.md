@@ -36,7 +36,7 @@ scripts/new-skill.sh           # scaffold a new skill
 ## Add a skill
 
 ```bash
-scripts/new-skill.sh my-skill
+scripts/new-skill.sh oot-my-skill
 # edit skills/my-skill/SKILL.md and commit; the plugin auto-discovers everything under skills/
 ```
 

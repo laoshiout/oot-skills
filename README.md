@@ -36,7 +36,7 @@ scripts/new-skill.sh           # 一键生成新 skill
 ## 新增 skill
 
 ```bash
-scripts/new-skill.sh my-skill
+scripts/new-skill.sh oot-my-skill
 # 编辑 skills/my-skill/SKILL.md 后提交即可，插件会自动发现 skills/ 下的内容
 ```
 
