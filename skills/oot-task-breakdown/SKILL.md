@@ -1,6 +1,6 @@
 ---
 name: oot-task-breakdown
-description: Break a new project (or a big feature) into task cards under docs/tasks/ with a docs/TASK.md tracker (status table + dependency graph). Cards are written to be as independent as practical, ideally doable in a fresh session. Uses existing docs/SPEC.md, docs/ARCHITECTURE.md, CLAUDE.md if present. Use when the user starts a new project, asks to "拆卡", "拆任务", "task breakdown", "split into tasks/cards", adds cards to an existing plan, or asks to update task progress / mark a task done in docs/TASK.md.
+description: Break a new project (or a big feature) into task cards under docs/tasks/ with a docs/TASK.md tracker (status table + dependency graph). Cards are written to be as independent as practical, ideally doable in a fresh session. Needs the user to provide what to build or which docs to work from; stops and asks if neither is given. Use when the user starts a new project, asks to "拆卡", "拆任务", "task breakdown", "split into tasks/cards", adds cards to an existing plan, or asks to update task progress / mark a task done in docs/TASK.md.
 ---
 
 # Task Breakdown (拆卡)
@@ -26,8 +26,17 @@ These are the details that drift between sessions, so follow them literally:
 - If any of these files already exist, read and extend them; don't overwrite or rename.
 - Write card bodies and the tracker in the user's language (file names stay English).
 
+## Precondition: input from the user
+Cards are only as good as what they are cut from, and what to build is the user's call, not yours. So before anything else, check that the user supplied at least one of:
+- a description of what to build or change (in the message or earlier in the conversation);
+- documents or files to work from (PRD, SPEC, design notes, an existing `docs/` or code they point to).
+
+If they gave **neither**, stop. Don't scan the repo and guess a project from it, don't invent requirements, and don't write placeholder cards — they would look like a plan and be wrong. Reply briefly asking for one of the two, e.g. "拆卡需要依据：请告诉我要做什么，或指定要参考的文档/目录。" If the repo contains likely candidates (a `docs/SPEC.md`, a README), name them and ask whether to use them rather than assuming.
+
+If the input is too thin to cut cards without making up the core of the product (what it does, who it is for, what "done" looks like), ask the few questions that unblock it. Small gaps (tech stack, naming, minor scope) you may fill with assumptions — state them in the cards' `背景`, so the user can correct them.
+
 ## Workflow: creating a breakdown
-1. Read the user's idea and any existing `docs/`, `CLAUDE.md`/`AGENTS.md`, README and code. If requirements are ambiguous in a way that changes the card structure, ask a few focused questions first; otherwise proceed with stated assumptions.
+1. Read everything the user gave you, plus `CLAUDE.md`/`AGENTS.md`, README and the code that is relevant to it. Treat what you find as supplementary to the user's input, not a replacement for it.
 2. Split the work into cards. Each card should be:
    - one coherent, verifiable deliverable, small enough for a single session;
    - **as independent as practical** — aim for a card that a fresh session can pick up and finish using only the card itself plus the code already in the repo. Independence is a goal, not a rule: some cards genuinely build on others, and forcing it (duplicated work, fake stubs) is worse than an honest dependency. When a dependency is real, declare it; when two cards could be made independent cheaply (agree on an interface up front, split along a seam), do that so they can run in parallel;
