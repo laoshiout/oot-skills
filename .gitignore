@@ -1,2 +1,42 @@
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Editors / IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Dependencies / build
 node_modules/
+__pycache__/
+*.pyc
+.venv/
+
+# Logs / temp / env
+*.log
+*.tmp
+.env
+.env.*
+!.env.example
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# skill-creator eval workspaces
+*-workspace/
